@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+    id: 1
+    author: Morten
+    changes:
+      - createTable:
+          tableName: clients
+          columns:
+            - column:
+                name: id
+                type: int
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: name
+                type: String
+      - createTable:
+          tableName: accounts
+          columns:
+            - column:
+                name: id
+                type: int
+                autoIncrement: true
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: client_id
+                type: int
+                constraints:
+                  primaryKey: true
+                  foreignKeyName: fk_accounts_clients
+                  nullable: false
+                  references: clients(id)
+            - column:
+                name: account_nr
+                type: String
+            - column:
+                name: balance
+                type: int
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Morten</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Morten">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Checkout example · Bootstrap</title>
+
+</head>
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--BODY-->
+
+<body class="bg-light">
+<div class="container">
+    <div class="py-5 text-center">
+        <img height="72" width="72" alt="" src="slider_puffin_jpegmini_mobile.jpg" class="d-block mx-auto mb-4">
+        <h2>Morten's bank</h2>
+        <p class="lead">Morteni projekt</p>
+    </div>
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--BUTTONID-->
+
+
+    <div class="col-md-25 order-md-25">
+        <h4 class="mb-3">Start your bank account here!</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="inputClientIdForCreateAccount">Create Client ID</label>
+                <input type="number" class="form-control" id="inputClientIdForCreateAccount" placeholder="Enter clientId">
+                <div class="invalid-feedback">
+                    Client id is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputAccountNrForCreateAccount">Account nr</label>
+                <input type="text" class="form-control" id="inputAccountNrForCreateAccount" placeholder="Enter account nr">
+                <div class="invalid-feedback">
+                    Account nr is required
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputBalanceForCreateAccount">Balance</label>
+                <input type="number" class="form-control" id="inputBalanceForCreateAccount" placeholder="Enter balance">
+
+                <div class="invalid-feedback">
+                    Balance is required
+                </div>
+            </div>
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <br>
+        <button id="buttonCreateAccount" class="btn btn-primary btn-lg">
+            Create account
+        </button>
+        <br>
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+        <span id='messagesCreateAccount'></span>
+        <br>
+
+
+
+        <div>
+            <a href="loggedIn.html">Kui konto loodud, vajuta siia!</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+
+
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <br>
+
+    </div>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
+</div>
+
+<!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
+
+<script>
+//INPUT
+let inputClientIdForCreateAcc = document.getElementById("inputClientIdForCreateAccount");
+let inputAccountNrForCreateAccount = document.getElementById("inputAccountNrForCreateAccount");
+let inputBalanceForCreateAccount = document.getElementById("inputBalanceForCreateAccount");
+
+//BUTTON
+let buttonCreateAccount = document.getElementById("buttonCreateAccount");
+
+//MESSAGE
+let messagesCreateAccount = document.getElementById('messagesCreateAccount');
+
+buttonCreateAccount.addEventListener('click', function(){
+    fetch('/sqlNewAccount', {
+				method: 'POST',
+				cache: 'no-cache',
+				headers: {
+					'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    clientId: inputClientIdForCreateAcc.value,
+                    accountNumber: inputAccountNrForCreateAccount.value,
+                    amount: inputBalanceForCreateAccount.value
+                })
+				})
+			.then(function() {
+                messagesCreateAccount.innerText = 'Success';
+			})
+			.catch(function(err) {
+                console.log(err);
+                messagesCreateAccount.innerText = 'This does not seem right';
+			});
+        })
+
+</script>
+
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2020 Morten's bank</p>
+
+</footer>
+
+
+</body>
+
+</html>

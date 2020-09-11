@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input id="testInput" type="text">
+<br>
+<br>
+<button id="buttonClients" ;>
+    Clients
+</button>
+<br>
+<br>
+<span id='messages'></span>
+
+
+<script>
+
+let buttonClients = document.getElementById("buttonClients");
+let messages = document.getElementById('messages');
+buttonClients.addEventListener('click', function(){
+    fetch('/sqltestAllClients', {
+				method: 'GET',
+				cache: 'no-cache',
+				headers: {
+					'Content-Type': 'application/json'
+				}
+
+				})
+			.then(function(response) {
+                return response.json();
+                //console.log(response);
+			})
+			.then(function(jsonData) {
+
+
+                messages.innerText = JSON.stringify(jsonData);
+                console.log(jsonData);
+				;
+			})
+			.catch(function(err) {
+                messages.innerText = 'This does not seem right';
+                console.log(messages.innerText);
+			});
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+

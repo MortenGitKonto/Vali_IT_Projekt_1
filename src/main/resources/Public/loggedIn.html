@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--HEAD-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Morten</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Morten">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Checkout example · Bootstrap</title>
+
+</head>
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--BODY-->
+
+<body class="bg-light">
+<div class="container">
+    <div class="py-5 text-center">
+        <img height="72" width="72" alt="" src="slider_puffin_jpegmini_mobile.jpg" class="d-block mx-auto mb-4">
+        <h2>Morten's bank</h2>
+        <p class="lead">Morteni projekt</p>
+    </div>
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--BUTTONID-->
+
+
+    <div class="col-md-25 order-md-25">
+        <h4 class="mb-3">Get your balance</h4>
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <input type="text" class="form-control" id="inputAccountNrForBalance"
+                       placeholder="Enter account nr">
+
+                <input type="text" class="form-control" id="getBalanceNow"
+                       placeholder="balance" value="">
+
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <button id="buttonGetBalance" class="btn btn-primary btn-lg">
+            Get your balance
+        </button>
+        <br>
+        <br>
+        <br>
+        <span id='messagesGetBalance'></span>
+
+        <h4 class="mb-3">Make a deposit</h4>
+
+        <input type="text" class="form-control" id="inputDepositAccountNr"
+               placeholder="Enter account nr">
+
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+        <input type="number" class="form-control" id="inputDepositAmount"
+               placeholder="Enter amount">
+
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+        <button id="buttonMakeDeposit" class="btn btn-primary btn-lg">
+            Make a deposit
+        </button>
+        <br>
+
+        <br>
+        <span id='messagesDeposit'></span>
+        <h4 class="mb-3">Withdraw money</h4>
+
+        <input type="text" class="form-control" id="inputWithdrawAccountNr"
+               placeholder="Enter account nr">
+
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+        <input type="number" class="form-control" id="inputWithdrawAmount"
+               placeholder="Enter amount">
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+
+
+        <button id="buttonWithdraw" class="btn btn-primary btn-lg">
+            Withdraw
+        </button>
+        <br>
+        <br>
+        <span id='messagesWithdraw'></span>
+
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+
+        <h4 class="mb-3">Make a transfer</h4>
+
+        <input type="text" class="form-control" id="inputFromAccountNr"
+               placeholder="Enter sender's account nr">
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+
+        <input type="text" class="form-control" id="inputToAccountNr"
+               placeholder="Enter receiver's account nr">
+
+        <input type="number" class="form-control" id="inputFromAmount"
+               placeholder="Enter amount">
+
+        <div class="invalid-feedback">
+            Username is required.
+        </div>
+
+        <button id="buttonTransfer" class="btn btn-primary btn-lg">
+            Make a transfer
+        </button>
+        <br>
+
+        <span id='messagesTransfer'></span>
+
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <br>
+
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <br>
+    <br>
+
+
+    <br>
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <button id="buttonAllAccounts">
+        Get info about all accounts
+    </button>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <br>
+    <span id='messagesAccounts'></span>
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <br>
+    <button id="buttonAllClients">
+        Get info about all clients
+    </button>
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <span id='messagesClients'></span>
+    <br>
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+    <button id="buttonOneAccount">
+        Get info about this account
+    </button>
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <input id="inputClientIdForAccount" type="number" placeholder="Enter clientId">
+    <br>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <span id='messagesOneAccount'></span>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <br>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
+
+    <script>
+
+
+        let inputAccountNrForBalance = document.getElementById("inputAccountNrForBalance");
+        let buttonGetBalance = document.getElementById("buttonGetBalance");
+        let messagesGetBalance = document.getElementById('messagesGetBalance');
+
+        let balanceValue = "";
+
+
+        function showBalance(balanceValue) {
+            document.getElementById("getBalanceNow").value = balanceValue;
+        }
+
+        function fillAllAccNrInput(inputAccountNrForBalance) {
+            document.getElementById("inputDepositAccountNr").value = inputAccountNrForBalance.value;
+            document.getElementById("inputWithdrawAccountNr").value = inputAccountNrForBalance.value;
+            document.getElementById("inputFromAccountNr").value = inputAccountNrForBalance.value;
+        }
+
+        buttonGetBalance.addEventListener('click', function () {
+            fetch('/sqltestBalance/' + inputAccountNrForBalance.value, {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(function (response) {
+                    return response.json();
+                    <!--                console.log(response);-->
+                })
+                .then(function (jsonData) {
+                    messagesGetBalance.innertext = JSON.stringify(jsonData);
+
+                    balanceValue = messagesGetBalance.innertext;
+                    showBalance(balanceValue);
+
+                    fillAllAccNrInput(inputAccountNrForBalance);
+
+
+                    // console.log(messagesGetBalance.innertext);
+                })
+                .catch(function (err) {
+                    <!--                console.log(err);-->
+                    messagesGetBalance = 'This does not seem right';
+                    <!--                console.log(messagesGetBalance.innerText);-->
+                });
+        })
+
+
+        let buttonAllAccounts = document.getElementById("buttonAllAccounts");
+        let messagesAccounts = document.getElementById('messagesAccounts');
+
+        buttonAllAccounts.addEventListener('click', function () {
+            fetch('/sqltestAllAccounts', {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            })
+                .then(function (response) {
+                    return response.json();
+                    //console.log(response);
+                })
+                .then(function (jsonData) {
+                    messagesAccounts.innerText = JSON.stringify(jsonData);
+                    console.log(jsonData);
+                    ;
+                })
+                .catch(function (err) {
+                    messagesAccounts.innerText = 'This does not seem right';
+                    console.log(messagesAccounts.innerText);
+                });
+
+
+        })
+
+
+        let buttonAllClients = document.getElementById("buttonAllClients");
+        let messagesClients = document.getElementById('messagesClients');
+
+        buttonAllClients.addEventListener('click', function () {
+            fetch('/sqltestAllClients', {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+            })
+                .then(function (response) {
+                    return response.json();
+                    console.log(response.json());
+                })
+                .then(function (jsonData) {
+
+
+                    messagesClients.innerText = JSON.stringify(jsonData);
+                    console.log(messagesClients.innerText);
+                    ;
+                })
+                .catch(function (err) {
+                    messagesClients.innerText = 'This does not seem right';
+                    console.log(messagesClients.innerText);
+                });
+
+
+        })
+
+        let inputIdForAcc = document.getElementById("inputClientIdForAccount");
+        let buttonOneAccount = document.getElementById("buttonOneAccount");
+        let messagesOneAccount = document.getElementById('messagesOneAccount');
+
+        buttonOneAccount.addEventListener('click', function () {
+            fetch('/testOneAccount/' + inputIdForAcc.value, {
+                method: 'GET',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(function (response) {
+                    return response.json();
+                    <!--                console.log(response);-->
+                })
+                .then(function (jsonData) {
+                    messagesOneAccount.innerText = JSON.stringify(jsonData);
+                    console.log(messagesOneAccount.innerText);
+
+                })
+                .catch(function (err) {
+                    <!--                console.log(err);-->
+                    messagesOneAccount.innerText = 'This does not seem right';
+                    <!--                console.log(messagesOneAccount.innerText);-->
+                });
+        })
+
+
+        //INPUT
+        let inputDepositAmount = document.getElementById("inputDepositAmount");
+        let inputDepositAccountNr = document.getElementById("inputDepositAccountNr");
+
+        //BUTTON
+        let buttonMakeDeposit = document.getElementById("buttonMakeDeposit");
+
+        //MESSAGE
+        let messagesDeposit = document.getElementById('messagesDeposit');
+
+        buttonMakeDeposit.addEventListener('click', function () {
+            fetch('/sqlDepositIntoAccount', {
+                method: 'PUT',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    accountNumber: inputDepositAccountNr.value,
+                    amount: inputDepositAmount.value
+                })
+            })
+                .then(function () {
+                    messagesDeposit.innerText = 'Success';
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    messagesDeposit.innerText = 'This does not seem right';
+                });
+        })
+
+
+        //INPUT
+        let inputWithdrawAmount = document.getElementById("inputWithdrawAmount");
+        let inputWithdrawAccountNr = document.getElementById("inputWithdrawAccountNr");
+
+        //BUTTON
+        let buttonWithdraw = document.getElementById("buttonWithdraw");
+
+        //MESSAGE
+        let messagesWithdraw = document.getElementById('messagesWithdraw');
+
+        buttonWithdraw.addEventListener('click', function () {
+            fetch('/sqlWithdrawFromAccount', {
+                method: 'PUT',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    accountNumber: inputWithdrawAccountNr.value,
+                    amount: inputWithdrawAmount.value
+                })
+            })
+                .then(function () {
+                    messagesWithdraw.innerText = 'Success';
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    messagesWithdraw.innerText = 'This does not seem right';
+                });
+        })
+
+
+        //INPUT
+        let inputFromAccountNr = document.getElementById("inputFromAccountNr");
+        let inputFromAmount = document.getElementById("inputFromAmount");
+        let inputToAccountNr = document.getElementById("inputToAccountNr");
+
+
+        //BUTTON
+        let buttonTransfer = document.getElementById("buttonTransfer");
+
+        //MESSAGE
+        let messagesTransfer = document.getElementById('messagesTransfer');
+
+        buttonTransfer.addEventListener('click', function () {
+            fetch('/sqlTransferFromAccountToAccount', {
+                method: 'PUT',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(
+                    [{
+                        accountNumber: inputFromAccountNr.value,
+                        amount: inputFromAmount.value
+                    }, {
+                        accountNumber: inputToAccountNr.value
+                    }]
+                )
+            })
+                .then(function () {
+                    messagesTransfer.innerText = 'Success';
+                })
+                .catch(function (err) {
+                    console.log(err);
+                    messagesTransfer.innerText = 'This does not seem right';
+                });
+        })
+
+
+    </script>
+
+
+    <!--let element = document.getElementById("testkiri");-->
+    <!--console.log(element);-->
+    <!--console.log(element.innerHTML);-->
+    <!--element.innerHTML="joujoujou";-->
+    <!--</button>-->
+
+    <!--</p>-->
+
+
+    <!--function calculateLoan (amount, months, interest=10,name="John"){-->
+    <!--    console.log(amount);-->
+    <!--    console.log(months);-->
+    <!--    console.log(interest);-->
+    <!--    console.log(name);-->
+    <!--}-->
+    <!---->
+    <!--calculateLoan (36,8)-->
+
+
+    <!--function myFunctionTwo(){-->
+    <!--//Stuff-->
+    <!--    -->
+    <!--}-->
+    <!---->
+    <!--function myFunctionOne(){-->
+    <!--//Stuff-->
+    <!--myFunctionTwo();-->
+    <!--}-->
+
+
+    <!--let a=1;-->
+    <!--while(a<10){-->
+    <!--console.log(a);-->
+    <!--a++;-->
+    <!--}-->
+
+    <!--let a="5";-->
+    <!--let b=5;-->
+    <!--if(a===b){-->
+    <!--alert('võrdne')}-->
+    <!--else{-->
+    <!--alert('mine .....')}-->
+    <!--    alert('Hello, world');    //PROOVI SEDA!!!-->
+
+
+    <!--    <img src="slider_puffin_jpegmini_mobile.jpg"/>-->
+    <!--    <br>-->
+    <!---->
+    <!--    <a href="https://www.google.com/search?q=image&rlz=1C1GCEV_enEE915EE915&sxsrf=ALeKk01qGqwHXkS0PaJZshubGKG7hSISvg:1599475424812&tbm=isch&source=iu&ictx=1&fir=G1_Vs888uiu6-M%252C2DOK0HM4QCJg-M%252C_&vet=1&usg=AI4_-kS5ZeeN3ZTVPytdzBMw6npnHGrHDQ&sa=X&ved=2ahUKEwjHg5ek7tbrAhWmlYsKHdkDCDMQ9QF6BAgKEF8&biw=1536&bih=754#imgrc=G1_Vs888uiu6-M">Pilt-->
+    <!--        siit</a>-->
+    <!---->
+
+
+    <!--<table width="250px" border="1">-->
+    <!--    <tr align="center" valign="top">-->
+    <!--        <td height="30">1</td>-->
+    <!--        <td height="30">2</td>-->
+    <!--        <td height="30">3</td>-->
+    <!--    </tr>-->
+    <!--    <tr align="center">-->
+    <!--        <td height="30"><input type="button" name="Vajuta siia"></td>-->
+    <!--        <td height="30">Joosua</td>-->
+    <!--        <td height="30">Jaanus</td>-->
+    <!--    </tr>-->
+    <!--    <tr align="center" valign="bottom">-->
+    <!--        <td height="30">mees 1</td>-->
+    <!--        <td height="30">mees 2</td>-->
+    <!--        <td height="30">mees 3</td>-->
+    <!--    </tr>-->
+
+
+    <!--</table>-->
+    <!--<input type="image" name="imagebutton" src="slider_puffin_jpegmini_mobile.jpg">-->
+    <!--<br>-->
+    <!--<br>-->
+    <!--<input type="password" name="Parka">-->
+    <!--<br>-->
+
+    <!--<input type="checkbox">-->
+
+    <!--<button onclick="alert ('Hello Morten');">-->
+    <!--    HELLO-->
+    <!--</button>-->
+
+</div>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2020 Morten's bank</p>
+
+</footer>
+
+
+</body>
+
+
+</html>

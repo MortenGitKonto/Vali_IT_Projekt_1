@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Morten</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Morten">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Checkout example · Bootstrap</title>
+
+</head>
+
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+<!--BODY-->
+
+<body class="bg-light">
+<div class="container">
+    <div class="py-5 text-center">
+        <img height="72" width="72" alt="" src="slider_puffin_jpegmini_mobile.jpg" class="d-block mx-auto mb-4">
+        <h2>Morten's bank</h2>
+        <p class="lead">Morteni projekt</p>
+    </div>
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--BUTTONID-->
+
+
+    <div class="col-md-25 order-md-25">
+        <h4 class="mb-3">Become a Client here!</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="inputUsernameForCreateClient">Create Username</label>
+                <input type="text" class="form-control" id="inputUsernameForCreateClient"
+                       placeholder="username (only text)">
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label for="inputPasswordForCreateClient">Create Password</label>
+                <input type="text" class="form-control" id="inputPasswordForCreateClient"
+                       placeholder="password (only text)">
+                <div class="invalid-feedback">
+                    Password is required.
+                </div>
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+                <label for="inputNameForCreateClient">Your name</label>
+                <input type="text" class="form-control" id="inputNameForCreateClient" placeholder="First and last name">
+                <div class="invalid-feedback">
+                    Name is required.
+                </div>
+            </div>
+        </div>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <br>
+        <button id="buttonCreateClient" class="btn btn-primary btn-lg">
+            Become a client!
+        </button>
+        <br>
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <span id='messagesCreateClient'></span>
+        <br>
+
+
+
+        <div>
+            <a href="login.html">Kui klient loodud, logi sisse!</a>
+        </div>
+        <br>
+        <br>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+        <h4 class="mb-3">Create Your Bank Account!</h4>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="inputClientIdForCreateAccount">Create Client ID</label>
+                <input type="number" class="form-control" id="inputClientIdForCreateAccount" placeholder="Enter clientId">
+                <div class="invalid-feedback">
+                    Client id is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputAccountNrForCreateAccount">Account nr</label>
+                <input type="text" class="form-control" id="inputAccountNrForCreateAccount" placeholder="Enter account nr">
+                <div class="invalid-feedback">
+                    Account nr is required
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="inputBalanceForCreateAccount">Balance</label>
+                <input type="number" class="form-control" id="inputBalanceForCreateAccount" placeholder="Enter balance">
+
+                <div class="invalid-feedback">
+                    Balance is required
+                </div>
+            </div>
+        </div>
+
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <br>
+        <button id="buttonCreateAccount" class="btn btn-primary btn-lg">
+            Create account
+        </button>
+    </div>
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <br>
+    <span id='messagesCreateAccount'></span>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+</div>
+
+
+
+<!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
+</div>
+<script>
+
+
+
+//INPUT
+let inputNameForCreateClient = document.getElementById("inputNameForCreateClient");
+let inputUsernameForCreateClient = document.getElementById("inputUsernameForCreateClient");
+let inputPasswordForCreateClient = document.getElementById("inputPasswordForCreateClient");
+
+//BUTTON
+let buttonCreateClient = document.getElementById("buttonCreateClient");
+
+//MESSAGE
+let messagesCreateClient = document.getElementById('messagesCreateClient');
+
+buttonCreateClient.addEventListener('click', function(){
+    fetch('/sqlNewClient', {
+				method: 'POST',
+				cache: 'no-cache',
+				headers: {
+					'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: inputNameForCreateClient.value,
+                    username: inputUsernameForCreateClient.value,
+                    password: inputPasswordForCreateClient.value
+                })
+				})
+			.then(function() {
+                messagesCreateClient.innerText = 'Success';
+			})
+			.catch(function(err) {
+                console.log(err);
+                messagesCreateClient.innerText = 'This does not seem right';
+			});
+        })
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">© 2020 Morten's bank</p>
+
+</footer>
+
+
+</body>
+
+</html>

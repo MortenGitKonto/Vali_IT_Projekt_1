@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+
+
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="1" author="Morten">
+        <createTable tableName="clients">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="bank_accounts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="client_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_bankAccounts_clients" references="clients(id)"/>
+            </column>
+            <column name="account_nr" type="text">
+                <constraints unique="true"/>
+            </column>
+            <column name="balance" type="int">
+            </column>
+        </createTable>
+        <createTable tableName="transaction_history">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="fromaccount_id" type="int">
+                <constraints nullable="true" foreignKeyName="fk_transactionHistory_bankAccount" references="bank_accounts(id)"/>
+            </column>
+            <column name="toaccount_id" type="int">
+                <constraints nullable="true" foreignKeyName="fk_transactionHistory2_bankAccount" references="bank_accounts(id)"/>
+            </column>
+            <column name="transfer" type="int">
+            </column>
+            <column name="withdrawal" type="int">
+            </column>
+            <column name="deposit" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="add username and password columns" author="Morten">
+        <addColumn tableName="clients">
+            <column name="username" type="text">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="clients">
+            <column name="password" type="text">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
+</databaseChangeLog>
