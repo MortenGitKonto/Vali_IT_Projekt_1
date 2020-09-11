@@ -73,20 +73,27 @@
 
         <h4 class="mb-3">Make a deposit</h4>
 
-        <input type="text" class="form-control" id="inputDepositAccountNr"
-               placeholder="Enter account nr">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <input type="text" class="form-control" id="inputDepositAccountNr"
+                       placeholder="Enter account nr">
 
 
-        <div class="invalid-feedback">
-            Username is required.
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+                <input type="number" class="form-control" id="inputDepositAmount"
+                       placeholder="Enter amount">
+
+
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
         </div>
-        <input type="number" class="form-control" id="inputDepositAmount"
-               placeholder="Enter amount">
 
-
-        <div class="invalid-feedback">
-            Username is required.
-        </div>
         <button id="buttonMakeDeposit" class="btn btn-primary btn-lg">
             Make a deposit
         </button>
@@ -96,20 +103,25 @@
         <span id='messagesDeposit'></span>
         <h4 class="mb-3">Withdraw money</h4>
 
-        <input type="text" class="form-control" id="inputWithdrawAccountNr"
-               placeholder="Enter account nr">
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <input type="text" class="form-control" id="inputWithdrawAccountNr"
+                       placeholder="Enter account nr">
 
 
-        <div class="invalid-feedback">
-            Username is required.
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+                <input type="number" class="form-control" id="inputWithdrawAmount"
+                       placeholder="Enter amount">
+
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
         </div>
-        <input type="number" class="form-control" id="inputWithdrawAmount"
-               placeholder="Enter amount">
-
-        <div class="invalid-feedback">
-            Username is required.
-        </div>
-
 
         <button id="buttonWithdraw" class="btn btn-primary btn-lg">
             Withdraw
@@ -125,20 +137,26 @@
 
         <h4 class="mb-3">Make a transfer</h4>
 
-        <input type="text" class="form-control" id="inputFromAccountNr"
-               placeholder="Enter sender's account nr">
-        <div class="invalid-feedback">
-            Username is required.
-        </div>
+        <div class="row">
 
-        <input type="text" class="form-control" id="inputToAccountNr"
-               placeholder="Enter receiver's account nr">
+            <div class="col-md-6 mb-3">
 
-        <input type="number" class="form-control" id="inputFromAmount"
-               placeholder="Enter amount">
+                <input type="text" class="form-control" id="inputFromAccountNr"
+                       placeholder="Enter sender's account nr">
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
 
-        <div class="invalid-feedback">
-            Username is required.
+                <input type="text" class="form-control" id="inputToAccountNr"
+                       placeholder="Enter receiver's account nr">
+
+                <input type="number" class="form-control" id="inputFromAmount"
+                       placeholder="Enter amount">
+
+                <div class="invalid-feedback">
+                    Username is required.
+                </div>
+            </div>
         </div>
 
         <button id="buttonTransfer" class="btn btn-primary btn-lg">
@@ -148,114 +166,61 @@
 
         <span id='messagesTransfer'></span>
 
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+
+                <button id="buttonAllAccounts">
+                    Get info about all accounts
+                </button>
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <br>
+        <span id='messagesAccounts'></span>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <br>
+        <button id="buttonAllClients">
+            Get info about all clients
+        </button>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+        <span id='messagesClients'></span>
+        <br>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+        <button id="buttonOneAccount">
+            Get info about this account
+        </button>
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <input id="inputClientIdForAccount" type="number" placeholder="Enter clientId">
+        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <span id='messagesOneAccount'></span>
+
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+            </div>
+        </div>
+
     </div>
 
 
-    <br>
-    <br>
-    <br>
-    <br>
 
-
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <br>
-
-
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <br>
-    <br>
-
-
-    <br>
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <button id="buttonAllAccounts">
-        Get info about all accounts
-    </button>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <br>
-    <span id='messagesAccounts'></span>
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <br>
-    <button id="buttonAllClients">
-        Get info about all clients
-    </button>
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <span id='messagesClients'></span>
-    <br>
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-    <button id="buttonOneAccount">
-        Get info about this account
-    </button>
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <input id="inputClientIdForAccount" type="number" placeholder="Enter clientId">
-    <br>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <span id='messagesOneAccount'></span>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-    <br>
-
-
-    <br>
-    <br>
-    <br>
-    <br>
 
 
     <!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
@@ -389,7 +354,9 @@
                     <!--                console.log(response);-->
                 })
                 .then(function (jsonData) {
-                    messagesOneAccount.innerText = JSON.stringify(jsonData);
+                    let dataInJson = JSON.stringify(jsonData);
+                    let accNrOneAcc = dataInJson.substring()
+                    messagesOneAccount.innerText
                     console.log(messagesOneAccount.innerText);
 
                 })
@@ -590,12 +557,12 @@
     <!--    HELLO-->
     <!--</button>-->
 
-</div>
+
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">© 2020 Morten's bank</p>
 
 </footer>
-
+</div>
 </body>
 
 
