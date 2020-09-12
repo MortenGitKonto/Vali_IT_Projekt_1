@@ -50,7 +50,6 @@ public class BankService {
     public List<Account>  testOneAccountBankService(int clientId) {
 
 
-
         List<Account> result = bankRepository.testOneAccountBankRepository(clientId);
 
         return result;

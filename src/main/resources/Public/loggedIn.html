@@ -177,50 +177,104 @@
                 <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <br>
-        <span id='messagesAccounts'></span>
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <br>
+                <span id='messagesAccounts'></span>
+                <br>
+
+                <
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <br>
-        <button id="buttonAllClients">
-            Get info about all clients
-        </button>
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <br>
+                <button id="buttonAllClients">
+                    Get info about all clients
+                </button>
+                <br>
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <span id='messagesClients'></span>
-        <br>
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-        <button id="buttonOneAccount">
-            Get info about this account
-        </button>
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <input id="inputClientIdForAccount" type="number" placeholder="Enter clientId">
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <span id='messagesOneAccount'></span>
+                <span id='messagesClients'></span>
+                <br>
+                <br>
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <button id="buttonOneAccount" class="btn btn-primary btn-lg">
+                    Get info about this account
+                </button>
+
+                <h4 class="mb-3">Get all bank account information</h4>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group form-inline">
+                            <label for="inputClientIdForAccount">Enter client ID</label>
+                            <input type="number" class="form-control" id="inputClientIdForAccount"
+                                   placeholder="Enter clientId">
+                        </div>
+
+                        <br>
+
+                        <label for="inputOneAccountNr">Your account nr:</label>
+                        <input type="text" class="form-control" id="inputOneAccountNr"
+                               placeholder="balance" value="">
+
+                        <label for="inputOneAccountBalance">Your balance is:</label>
+                        <input type="text" class="form-control" id="inputOneAccountBalance"
+                               placeholder="balance" value="">
+
+                        <label for="inputOneAccountId">Your bank account ID is:</label>
+                        <input type="text" class="form-control" id="inputOneAccountId"
+                               placeholder="balance" value="">
+
+                        <label for="inputOneAccountClientId">Your client ID is:</label>
+                        <input type="text" class="form-control" id="inputOneAccountClientId"
+                               placeholder="balance" value="">
+
+                        <div class="invalid-feedback">
+                            Username is required.
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <br>
+                <br>
+                <br>
+                <span id='messagesOneAccount'></span>
+
+                <!--                br>-->
+                <!--                <span id=''></span>-->
+                <!--                <br>-->
+                <!--                <br>-->
+                <!--                <span id='messagesOneAccountBalance'></span>-->
+                <!--                <br>-->
+                <!--                <br>-->
+                <!--                <span id=''></span>-->
+                <!--                <br>-->
+                <!--                <br>-->
+                <!--                <span id=''></span>-->
+                <!--                <br>-->
+
+
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+                <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
             </div>
         </div>
 
     </div>
-
-
-
 
 
     <!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
@@ -337,9 +391,73 @@
 
         })
 
+
+        function getSubstrings(substringJson) {
+
+            //Kogu json
+            let json = substringJson;
+            console.log(json);
+
+            //ACCNR
+            //AccNr lõpu-quote
+            let accFin = json.indexOf('"', 19);
+            console.log(accFin);
+            //Account nr substring
+            let accNrSubstring = json.substring(19, accFin);
+            console.log(accNrSubstring);
+            //messagesOneAccountNr.innerText=accNrSubstring;
+            document.getElementById("inputOneAccountNr").value = accNrSubstring;
+
+
+            //AMOUNT
+            //Amount lõpu-quote
+            let amountFin = json.indexOf('"', accFin + 3);
+            console.log(amountFin);
+            //id algus-quote
+            let idBegin = json.indexOf('"', amountFin + 1);
+            console.log(idBegin);
+            //amount substring
+            let amountSubstring = json.substring((amountFin + 2), (idBegin - 1));
+            console.log(amountSubstring);
+            //messagesOneAccountBalance.innerText=amountSubstring;
+            document.getElementById("inputOneAccountBalance").value = amountSubstring;
+
+            //ID
+            //id lõpu-quote
+            let idFin = json.indexOf('"', idBegin + 1);
+            console.log(idFin);
+            //clientId algus-quote
+            let clientIdBegin = json.indexOf('"', idFin + 1);
+            console.log(clientIdBegin);
+            //id substring
+            let idSubstring = json.substring((idFin + 2), (clientIdBegin - 1));
+            console.log(idSubstring);
+            //messagesOneAccountId.innerText=idSubstring;
+            document.getElementById("inputOneAccountId").value = idSubstring;
+
+            //Client ID
+            //clientId lõpu-quote
+            let clientIdFin = json.indexOf('"', clientIdBegin + 1);
+            console.log(clientIdFin);
+            //lõpu braces
+            let endBraces = json.indexOf('}', clientIdFin + 1);
+            console.log(endBraces);
+            //clientId substring
+            let clientIdSubstring = json.substring((clientIdFin + 2), endBraces);
+            console.log(clientIdSubstring);
+            //messagesOneAccountClientId.innerText=clientIdSubstring;
+            document.getElementById("inputOneAccountClientId").value = clientIdSubstring;
+        }
+
+
         let inputIdForAcc = document.getElementById("inputClientIdForAccount");
         let buttonOneAccount = document.getElementById("buttonOneAccount");
+
         let messagesOneAccount = document.getElementById('messagesOneAccount');
+        let inputOneAccountNr = document.getElementById('inputOneAccountNr');
+        let inputOneAccountBalance = document.getElementById('inputOneAccountBalance');
+        let inputOneAccountId = document.getElementById('inputOneAccountId');
+        let inputOneAccountClientId = document.getElementById('inputOneAccountClientId');
 
         buttonOneAccount.addEventListener('click', function () {
             fetch('/testOneAccount/' + inputIdForAcc.value, {
@@ -354,9 +472,8 @@
                     <!--                console.log(response);-->
                 })
                 .then(function (jsonData) {
-                    let dataInJson = JSON.stringify(jsonData);
-                    let accNrOneAcc = dataInJson.substring()
-                    messagesOneAccount.innerText
+                    messagesOneAccount.innerText = JSON.stringify(jsonData);
+                    getSubstrings(messagesOneAccount.innerText);
                     console.log(messagesOneAccount.innerText);
 
                 })
@@ -558,10 +675,10 @@
     <!--</button>-->
 
 
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2020 Morten's bank</p>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2020 Morten's bank</p>
 
-</footer>
+    </footer>
 </div>
 </body>
 
