@@ -42,15 +42,17 @@
 
         <div class="row">
             <div class="col-md-6 mb-3">
-                <label for="inputClientIdForCreateAccount">Create Client ID</label>
-                <input type="number" class="form-control" id="inputClientIdForCreateAccount" placeholder="Enter clientId">
+                <label for="inputClientIdForCreateAccount">Client ID</label>
+                <input type="number" class="form-control" id="inputClientIdForCreateAccount"
+                       placeholder="Use auto-fill button to get your clientId">
                 <div class="invalid-feedback">
                     Client id is required.
                 </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="inputAccountNrForCreateAccount">Account nr</label>
-                <input type="text" class="form-control" id="inputAccountNrForCreateAccount" placeholder="Enter account nr">
+                <input type="text" class="form-control" id="inputAccountNrForCreateAccount"
+                       placeholder="Enter account nr">
                 <div class="invalid-feedback">
                     Account nr is required
                 </div>
@@ -58,7 +60,6 @@
             <div class="col-md-6 mb-3">
                 <label for="inputBalanceForCreateAccount">Balance</label>
                 <input type="number" class="form-control" id="inputBalanceForCreateAccount" placeholder="Enter balance">
-
                 <div class="invalid-feedback">
                     Balance is required
                 </div>
@@ -66,46 +67,46 @@
         </div>
         <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
         <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <br>
+
+        <button id="buttonGetId" class="btn btn-primary btn-lg">
+            Auto-fill Client ID
+        </button>
+
         <button id="buttonCreateAccount" class="btn btn-primary btn-lg">
             Create account
         </button>
         <br>
 
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
+
+
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
         <span id='messagesCreateAccount'></span>
+        <span id='messagesGetId'></span>
         <br>
 
 
-
-        <div>
+        <div align="center">
             <a href="loggedIn.html">Kui konto loodud, vajuta siia!</a>
         </div>
-        <br>
-        <br>
-        <br>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-
-
 
 
         <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
         <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
-        <br>
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+
+
 
     </div>
     <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
     <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
 
 
 </div>
@@ -113,38 +114,82 @@
 <!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
 
 <script>
-//INPUT
-let inputClientIdForCreateAcc = document.getElementById("inputClientIdForCreateAccount");
-let inputAccountNrForCreateAccount = document.getElementById("inputAccountNrForCreateAccount");
-let inputBalanceForCreateAccount = document.getElementById("inputBalanceForCreateAccount");
 
-//BUTTON
-let buttonCreateAccount = document.getElementById("buttonCreateAccount");
 
-//MESSAGE
-let messagesCreateAccount = document.getElementById('messagesCreateAccount');
+    let inputId = document.getElementById("inputClientIdForCreateAccount");
 
-buttonCreateAccount.addEventListener('click', function(){
-    fetch('/sqlNewAccount', {
-				method: 'POST',
-				cache: 'no-cache',
-				headers: {
-					'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    clientId: inputClientIdForCreateAcc.value,
-                    accountNumber: inputAccountNrForCreateAccount.value,
-                    amount: inputBalanceForCreateAccount.value
-                })
-				})
-			.then(function() {
+    //BUTTON
+    let buttonGetId = document.getElementById("buttonGetId");
+
+    //MESSAGE
+    let messagesGetId = document.getElementById('messagesGetId');
+
+    let idVal = "";
+
+    function showId(idVal) {
+        inputId.value = idVal;
+    }
+
+    buttonGetId.addEventListener('click', function () {
+        fetch('/sqltestId', {
+            method: 'GET',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(function (response) {
+                return response.json();
+                <!--                console.log(response);-->
+            })
+            .then(function (jsonData) {
+                messagesGetId.innertext = JSON.stringify(jsonData);
+
+                idVal = messagesGetId.innertext;
+                showId(idVal);
+
+// console.log(messagesGetBalance.innertext);
+            })
+            .catch(function (err) {
+                <!--                console.log(err);-->
+                messagesGetId = 'This does not seem right';
+                <!--                console.log(messagesGetBalance.innerText);-->
+            });
+    })
+
+
+    //INPUT
+    let inputClientIdForCreateAcc = document.getElementById("inputClientIdForCreateAccount");
+    let inputAccountNrForCreateAccount = document.getElementById("inputAccountNrForCreateAccount");
+    let inputBalanceForCreateAccount = document.getElementById("inputBalanceForCreateAccount");
+
+    //BUTTON
+    let buttonCreateAccount = document.getElementById("buttonCreateAccount");
+
+    //MESSAGE
+    let messagesCreateAccount = document.getElementById('messagesCreateAccount');
+
+    buttonCreateAccount.addEventListener('click', function () {
+        fetch('/sqlNewAccount', {
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                clientId: inputClientIdForCreateAcc.value,
+                accountNumber: inputAccountNrForCreateAccount.value,
+                amount: inputBalanceForCreateAccount.value
+            })
+        })
+            .then(function () {
                 messagesCreateAccount.innerText = 'Success';
-			})
-			.catch(function(err) {
+            })
+            .catch(function (err) {
                 console.log(err);
                 messagesCreateAccount.innerText = 'This does not seem right';
-			});
-        })
+            });
+    })
 
 </script>
 

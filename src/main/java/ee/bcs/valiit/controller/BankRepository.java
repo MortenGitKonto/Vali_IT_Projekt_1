@@ -192,6 +192,18 @@ public class BankRepository {
         return password;
     }
 
+    ////Get clientId, et saaks pangakontot luua
+    public Integer getClientId (String logInUsername) {
+        String sql = "SELECT id FROM clients where username = :username";
+
+        Map<String, Object> paramMap = new HashMap();
+        paramMap.put("username", logInUsername);
+
+        Integer id = template.queryForObject(sql, paramMap, Integer.class);
+
+        return id;
+    }
+
 
 
 

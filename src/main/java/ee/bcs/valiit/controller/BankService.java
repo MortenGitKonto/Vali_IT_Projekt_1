@@ -15,6 +15,11 @@ public class BankService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+
+
     //TEE UUS ACCOUNT
     public void newAccountService(Account account) {
 
@@ -43,6 +48,8 @@ public class BankService {
 
     //KUTSU ÜHE PANGAKONTO VÄLJA
     public List<Account>  testOneAccountBankService(int clientId) {
+
+
 
         List<Account> result = bankRepository.testOneAccountBankRepository(clientId);
 
@@ -126,6 +133,11 @@ public class BankService {
     public Integer testBalance(String specificAccountNumber) {
         Integer balance = bankRepository.testBalance(specificAccountNumber);
         return balance;
+    }
+
+    public Integer testId() {
+
+        return userDetailsService.getIdLogIn();
     }
 }
 

@@ -27,6 +27,13 @@ public class BankController {
         return vastus;
     }
 
+    //Get logged in user id
+    @GetMapping("sqltestId")
+    public Integer testId() {
+        Integer vastus = bankService.testId();
+        return vastus;
+    }
+
     /*@PutMapping("sqlUpdateAccountInfo")
     public void updateSqlAccountNr() {
         String sql = "update bank_accounts set client_id = :clientId, account_nr= :accountNr, balance= :balance where id= :id";
@@ -57,6 +64,8 @@ public class BankController {
         List<Account> result = bankService.testOneAccountBankService(clientId);
         return result;
     }
+
+
 
     //KUTSU KÕIK KLIENDID VÄLJA (tabelist clients)
 
