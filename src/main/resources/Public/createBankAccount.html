@@ -44,7 +44,7 @@
             <div class="col-md-6 mb-3">
                 <label for="inputClientIdForCreateAccount">Client ID</label>
                 <input type="number" class="form-control" id="inputClientIdForCreateAccount"
-                       placeholder="Use auto-fill button to get your clientId">
+                       placeholder="Use auto-fill button to get your clientId" readonly>
                 <div class="invalid-feedback">
                     Client id is required.
                 </div>
@@ -130,7 +130,7 @@
         inputId.value = idVal;
     }
 
-    buttonGetId.addEventListener('click', function () {
+    document.addEventListener('DOMContentLoaded', function () {
         fetch('/sqltestId', {
             method: 'GET',
             cache: 'no-cache',
@@ -143,9 +143,7 @@
                 <!--                console.log(response);-->
             })
             .then(function (jsonData) {
-                messagesGetId.innertext = JSON.stringify(jsonData);
-
-                idVal = messagesGetId.innertext;
+                idVal = JSON.stringify(jsonData);
                 showId(idVal);
 
 // console.log(messagesGetBalance.innertext);
