@@ -18,78 +18,68 @@ public class BankService {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-
-
-    //TEE UUS ACCOUNT
-    public void newAccountService(Account account) {
-
-        bankRepository.newAccountRepository(account);
-
-
-    }
-    //TEE UUS KlIENT
+    //Create new client
     public void newClientService(Client client) {
-
-
         String encodedPassword = passwordEncoder.encode(client.getPassword());
-
         bankRepository.newClientRepository(client, encodedPassword);
-
-
     }
 
-    //KUTSU KÕIK PANGAKONTOD VÄLJA
-    public List<Account> testAllAccountsBankService() {
-
-        List<Account> list = bankRepository.testAllAccountsBankRepository();
-
-        return list;
+    //Create new bank account
+    public void newAccountService(Account account) {
+        bankRepository.newAccountRepository(account);
     }
 
-    //KUTSU ÜHE PANGAKONTO VÄLJA
-    public List<Account>  testOneAccountBankService(int clientId) {
-
-
-        List<Account> result = bankRepository.testOneAccountBankRepository(clientId);
-
-        return result;
+    //Update all info of one specific client
+    public void updateSqlClientNrBankService(Client client) {
+        bankRepository.updateSqlClientNrBankRepository(client);
     }
 
-    //KUTSU KÕIK KLIENDID VÄLJA (tabelist clients)
-    public List<Client> testAllClientsBankService() {
-
-        List<Client> clientList = bankRepository.testAllClientsBankRepository();
-
-        return clientList;
-    }
-
-
-    //MUUDA ÜHE KONTO KÕIKI ANDMEID
+    //Update all info of one specific bank account
     public void updateSqlAccountNrBankService(Account account) {
         bankRepository.updateSqlAccountNrBankRepository(account);
     }
 
-    public void updateSqlClientNrBankService(Client client) {
-
-        bankRepository.updateSqlClientNrBankRepository(client);
+    //Get all info of one specific bank account
+    public List<Account> testOneAccountBankService(int clientId) {
+        List<Account> result = bankRepository.testOneAccountBankRepository(clientId);
+        return result;
     }
 
+    //Get all info of all clients
+    public List<Client> testAllClientsBankService() {
+        List<Client> clientList = bankRepository.testAllClientsBankRepository();
+        return clientList;
+    }
 
-    /////DEPOSIT
+    //Get all info of all bank accounts
+    public List<Account> testAllAccountsBankService() {
+        List<Account> list = bankRepository.testAllAccountsBankRepository();
+        return list;
+    }
+
+    //Get balance from specific account
+    public Integer testBalance(String specificAccountNumber) {
+        return bankRepository.testBalance(specificAccountNumber);
+    }
+
+    //Get currently logged in user id
+    public Integer testId() {
+        return userDetailsService.getIdLogIn();
+    }
+
+    //Deposit money into specific bank account
     public void sqlDepositAmountService(Account account) {
-
         Integer currentBalance = bankRepository.selectBalanceRepository(account);
         Integer depositAmount = account.getAmount();
         bankRepository.sqlDepositAmountRepository(account, currentBalance, depositAmount);
 
+        //New transaction history row when depositing money into account
         int depositAccountId = bankRepository.getToAccountId(account.getAccountNumber());
         bankRepository.newDepositTransactionRepository(depositAccountId, account.getAmount(), 0, 0);
     }
 
-
-    /////WITHDRAW
+    //Withdraw money from specific bank account
     public void sqlWithdrawAmountService(Account account) {
-
         Integer currentBalance = bankRepository.selectBalanceRepository(account);
         if (currentBalance >= account.getAmount()) {
             bankRepository.sqlWithdrawAmountRepository(account, currentBalance);
@@ -97,46 +87,27 @@ public class BankService {
             System.out.println("Not enough money in the account to make the transaction");
         }
 
+        //New transaction history row when withdrawing money from account
         int withdrawAccountId = bankRepository.getFromAccountId(account.getAccountNumber());
         bankRepository.newWithdrawTransactionRepository(withdrawAccountId, 0, account.getAmount(), 0);
     }
 
-    /////TRANSFER
-
+    //Transfer money from one account into another
     public void sqlTransferAmountService(List<Account> transfer) {
-
-
-        //Deklareerin muutuja currentBalance (konto nr1 kohta), ehk kui kontol 1 on vähemalt "amount" siis toimub ülekanne kontole 2
         Integer currentBalanceAcc1 = bankRepository.selectBalanceRepository(transfer.get(0));
 
         if (currentBalanceAcc1 >= transfer.get(0).getAmount()) {
 
             sqlWithdrawAmountService(transfer.get(0));
-
-            //sqlDepositAmountService(transfer.get(1));
             Integer currentBalanceAcc2 = bankRepository.selectBalanceRepository(transfer.get(1));
             Integer depositAmount = transfer.get(0).getAmount();
             bankRepository.sqlDepositAmountRepository(transfer.get(1), currentBalanceAcc2, depositAmount);
 
-            //TRANSACTION HISTORY
+            //New transaction history row when transfering money from account into another
             int withdrawAccountId = bankRepository.getFromAccountId(transfer.get(0).getAccountNumber());
-
             int depositAccountId = bankRepository.getToAccountId(transfer.get(1).getAccountNumber());
             bankRepository.newTransferTransactionRepository(withdrawAccountId, depositAccountId, 0, 0, transfer.get(0).getAmount());
-
         }
-
-
-    }
-
-    public Integer testBalance(String specificAccountNumber) {
-        Integer balance = bankRepository.testBalance(specificAccountNumber);
-        return balance;
-    }
-
-    public Integer testId() {
-
-        return userDetailsService.getIdLogIn();
     }
 }
 

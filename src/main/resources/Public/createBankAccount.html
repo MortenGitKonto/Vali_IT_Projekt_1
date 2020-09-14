@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Morten</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Morten">
@@ -15,13 +12,6 @@
     <title>Checkout example · Bootstrap</title>
 
 </head>
-
-<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-<!--BODY-->
-
 <body class="bg-light">
 <div class="container">
     <div class="py-5 text-center">
@@ -30,16 +20,8 @@
         <p class="lead">Morteni projekt</p>
     </div>
 
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--BUTTONID-->
-
-
     <div class="col-md-25 order-md-25">
         <h4 class="mb-3">Start your bank account here!</h4>
-
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="inputClientIdForCreateAccount">Client ID</label>
@@ -65,71 +47,34 @@
                 </div>
             </div>
         </div>
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-<!--        <button id="buttonGetId" class="btn btn-primary btn-lg">-->
-<!--            Auto-fill Client ID-->
-<!--        </button>-->
-
         <button id="buttonCreateAccount" class="btn btn-primary btn-lg">
             Create account
         </button>
         <br>
-
-
-
-
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
         <span id='messagesCreateAccount'></span>
         <span id='messagesGetId'></span>
         <br>
-
-
         <div align="center">
             <a href="loggedIn.html">Kui konto loodud, vajuta siia!</a>
         </div>
-
-
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-        <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
-
-
     </div>
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-    <!--////////////////////////////////////////////////////////////////////////////////////////////////-->
-
-
 </div>
-
-<!--SIIT ALATES SCRIPT - ÜKSKI TAGIGA ASI SIIA EI LÄHE!!!!!!!-->
 
 <script>
 
 
     let inputId = document.getElementById("inputClientIdForCreateAccount");
-
     //BUTTON
     let buttonGetId = document.getElementById("buttonGetId");
-
     //MESSAGE
     let messagesGetId = document.getElementById('messagesGetId');
-
     let idVal = "";
 
     function showId(idVal) {
         inputId.value = idVal;
     }
 
+    //Auto-fill ID
     document.addEventListener('DOMContentLoaded', function () {
         fetch('/sqltestId', {
             method: 'GET',
@@ -155,7 +100,6 @@
             });
     })
 
-
     //INPUT
     let inputClientIdForCreateAcc = document.getElementById("inputClientIdForCreateAccount");
     let inputAccountNrForCreateAccount = document.getElementById("inputAccountNrForCreateAccount");
@@ -167,6 +111,7 @@
     //MESSAGE
     let messagesCreateAccount = document.getElementById('messagesCreateAccount');
 
+    //Create new bank account
     buttonCreateAccount.addEventListener('click', function () {
         fetch('/sqlNewAccount', {
             method: 'POST',
@@ -188,16 +133,9 @@
                 messagesCreateAccount.innerText = 'This does not seem right';
             });
     })
-
 </script>
-
-
 <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">© 2020 Morten's bank</p>
-
 </footer>
-
-
 </body>
-
 </html>

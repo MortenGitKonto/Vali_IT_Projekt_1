@@ -25,9 +25,10 @@ return id;
     @Override
     public UserDetails loadUserByUsername(String username){
 
+        //Get currently logged in user id
         id = bankRepository.getClientId(username);
-        System.out.println(id);
 
+        ////Get password HASH to check the password when logging in
         String password = bankRepository.getPassword(username);
 
         return User.withUsername(username)
