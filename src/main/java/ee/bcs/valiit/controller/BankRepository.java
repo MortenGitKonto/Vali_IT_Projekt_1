@@ -37,7 +37,6 @@ public class BankRepository {
 
     //Update all info of one specific client
     public void updateSqlClientNrBankRepository(Client client) {
-
         String sql = "update clients set name = :name where id= :id";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("id", client.getId());
@@ -47,7 +46,6 @@ public class BankRepository {
 
     //Update all info of one specific bank account
     public void updateSqlAccountNrBankRepository(Account account) {
-
         String sql = "update bank_accounts set client_id = :clientId, account_nr= :accountNumber, balance= :balance where id= :id";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("clientId", account.getClientId());
@@ -59,7 +57,6 @@ public class BankRepository {
 
     //Get all info of one specific bank account
     public List<Account> testOneAccountBankRepository(int clientId) {
-
         String sql = "select * from bank_accounts where client_id=:clientId";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("clientId", clientId);
@@ -69,7 +66,6 @@ public class BankRepository {
 
     //Get all info of all clients
     public List<Client> testAllClientsBankRepository() {
-
         String sql = "select * from clients order by id";
         Map<String, Object> paramMap = new HashMap();
         List<Client> clientList = template.query(sql, paramMap, new ObjectRowMapper2());
@@ -78,7 +74,6 @@ public class BankRepository {
 
     //Get all info of all bank accounts
     public List<Account> testAllAccountsBankRepository() {
-
         String sql = "select * from bank_accounts order by id";
         Map<String, Object> paramMap = new HashMap();
         List<Account> resultList = template.query(sql, paramMap, new ObjectRowMapper());
@@ -87,7 +82,6 @@ public class BankRepository {
 
     //Get balance from specific account
     public Integer selectBalanceRepository(Account account) {
-
         String sqlGet = "select balance from bank_accounts where account_nr = :accountNumber";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", account.getAccountNumber());
@@ -98,12 +92,9 @@ public class BankRepository {
     //Get currently logged in user id
     public Integer getClientId(String logInUsername) {
         String sql = "SELECT id FROM clients where username = :username";
-
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("username", logInUsername);
-
         Integer id = template.queryForObject(sql, paramMap, Integer.class);
-
         return id;
     }
 
@@ -113,13 +104,11 @@ public class BankRepository {
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", account.getAccountNumber());
         paramMap.put("balance", (balanceNow + depositAmount));
-
         template.update(sqlDeposit, paramMap);
     }
 
     //Withdraw money from specific bank account
     public void sqlWithdrawAmountRepository(Account account, Integer balanceNow) {
-
         String sqlWithdraw = "update bank_accounts set balance= :balance where account_nr = :accountNumber";
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", account.getAccountNumber());
@@ -130,24 +119,18 @@ public class BankRepository {
     //Get account ID where money is taken from
     public Integer getFromAccountId(String specificAccountNumber) {
         String sql = "SELECT id FROM bank_accounts where account_nr = :accountNumber";
-
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", specificAccountNumber);
-
         Integer fromAccountId = template.queryForObject(sql, paramMap, Integer.class);
-
         return fromAccountId;
     }
 
     //Get account ID where money is put into
     public Integer getToAccountId(String specificAccountNumber) {
         String sql = "SELECT id FROM bank_accounts where account_nr = :accountNumber";
-
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNumber", specificAccountNumber);
-
         Integer toAccountId = template.queryForObject(sql, paramMap, Integer.class);
-
         return toAccountId;
     }
 
@@ -173,7 +156,6 @@ public class BankRepository {
         paramMap.put("deposit", depositAmount);
         paramMap.put("transfer", transferAmount);
         paramMap.put("withdrawal", withdrawalAmount);
-
         template.update(sql, paramMap);
     }
 
@@ -187,29 +169,23 @@ public class BankRepository {
         paramMap.put("deposit", depositAmount);
         paramMap.put("transfer", transferAmount);
         paramMap.put("withdrawal", withdrawalAmount);
-
         template.update(sql, paramMap);
     }
 
     ////Get password HASH to check the password when logging in
     public String getPassword(String username) {
         String sql = "SELECT password FROM clients where username = :username";
-
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("username", username);
-
         String password = template.queryForObject(sql, paramMap, String.class);
-
         return password;
     }
 
     //Check account balance
     public Integer testBalance(String specificAccountNumber) {
         String sql = "select balance from bank_accounts where account_nr = :accountNr";
-
         Map<String, Object> paramMap = new HashMap();
         paramMap.put("accountNr", specificAccountNumber);
-
         Integer balance = template.queryForObject(sql, paramMap, Integer.class);
         return balance;
     }

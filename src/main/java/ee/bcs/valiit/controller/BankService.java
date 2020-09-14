@@ -41,20 +41,17 @@ public class BankService {
 
     //Get all info of one specific bank account
     public List<Account> testOneAccountBankService(int clientId) {
-        List<Account> result = bankRepository.testOneAccountBankRepository(clientId);
-        return result;
+        return bankRepository.testOneAccountBankRepository(clientId);
     }
 
     //Get all info of all clients
     public List<Client> testAllClientsBankService() {
-        List<Client> clientList = bankRepository.testAllClientsBankRepository();
-        return clientList;
+        return bankRepository.testAllClientsBankRepository();
     }
 
     //Get all info of all bank accounts
     public List<Account> testAllAccountsBankService() {
-        List<Account> list = bankRepository.testAllAccountsBankRepository();
-        return list;
+        return bankRepository.testAllAccountsBankRepository();
     }
 
     //Get balance from specific account
@@ -86,7 +83,6 @@ public class BankService {
         } else {
             System.out.println("Not enough money in the account to make the transaction");
         }
-
         //New transaction history row when withdrawing money from account
         int withdrawAccountId = bankRepository.getFromAccountId(account.getAccountNumber());
         bankRepository.newWithdrawTransactionRepository(withdrawAccountId, 0, account.getAmount(), 0);
@@ -97,7 +93,6 @@ public class BankService {
         Integer currentBalanceAcc1 = bankRepository.selectBalanceRepository(transfer.get(0));
 
         if (currentBalanceAcc1 >= transfer.get(0).getAmount()) {
-
             sqlWithdrawAmountService(transfer.get(0));
             Integer currentBalanceAcc2 = bankRepository.selectBalanceRepository(transfer.get(1));
             Integer depositAmount = transfer.get(0).getAmount();

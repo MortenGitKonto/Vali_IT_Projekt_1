@@ -47,8 +47,7 @@ public class BankController {
     //Get all info of one specific bank account
     @GetMapping("testOneAccount/{a}")
     public List<Account> testOneAccount(@PathVariable("a") int clientId) {
-        List<Account> result = bankService.testOneAccountBankService(clientId);
-        return result;
+        return bankService.testOneAccountBankService(clientId);
     }
 
     //Get all info of all clients
